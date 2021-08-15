@@ -5,7 +5,7 @@ import '../Model/Datasource.dart';
 
 
 class FAQPage extends StatelessWidget {
-  const FAQPage({Key? key}) : super(key: key);
+  // const FAQPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

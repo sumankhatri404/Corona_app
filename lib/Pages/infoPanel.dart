@@ -7,7 +7,7 @@ import '../Model/Datasource.dart';
 import 'Faqs.dart';
 
 class InfoPanel extends StatelessWidget {
-  const InfoPanel({Key? key}) : super(key: key);
+  // const InfoPanel({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

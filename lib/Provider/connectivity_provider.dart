@@ -7,7 +7,8 @@ import 'package:flutter/services.dart';
 class ConnectivityProvider with ChangeNotifier {
   Connectivity _connectivity = new Connectivity();
 
-  bool _isOnline = true;
+  bool _isOnline;
+
   bool get isOnline => _isOnline;
 
   startMonitoring() async {
@@ -44,7 +45,7 @@ class ConnectivityProvider with ChangeNotifier {
   }
 
   Future<bool> _updateConnectionStatus() async {
-    late bool isConnected;
+    bool isConnected;
     try {
       final List<InternetAddress> result =
           await InternetAddress.lookup('google.com');
