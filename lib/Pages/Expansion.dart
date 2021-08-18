@@ -23,8 +23,8 @@ class _ExpansionState extends State<Expansion> {
                   fontWeight: FontWeight.w600),
             ),
             children: [
-              Image.network(
-                'https://thumbs.dreamstime.com/z/fever-old-man-eps-illustration-design-47880174.jpg',
+              Image.asset(
+                'images/fever.jpg',
                 height: 90,
               ),
               SizedBox(
@@ -48,8 +48,8 @@ class _ExpansionState extends State<Expansion> {
               Divider(
                 thickness: 3,
               ),
-              Image.network(
-                'https://thumbs.dreamstime.com/b/vector-sick-woman-having-dry-cough-young-215334580.jpg',
+              Image.asset(
+                'images/drycough.jpg',
                 height: 90,
               ),
               SizedBox(
@@ -73,9 +73,9 @@ class _ExpansionState extends State<Expansion> {
               Divider(
                 thickness: 3,
               ),
-              Image.network(
-                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9VTXwaWNaMaS9Eg4p6BGNH4mV96cWFs4Vwg&usqp=CAU',
-                height: 90,
+              Image.asset(
+                'images/tiredness.jpeg',
+                height: 100,
               ),
               SizedBox(
                 height: 10,
@@ -107,8 +107,8 @@ class _ExpansionState extends State<Expansion> {
                   fontWeight: FontWeight.w600),
             ),
             children: [
-              Image.network(
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRTkbNboioCCxbMNdG7qZGVoTXEIcui-EQWRFG4kBxVereMOvGGJAYZCd9XAP21bVsDWY&usqp=CAU",
+              Image.asset(
+                'images/Aches.jpeg',
                 height: 90,
               ),
               SizedBox(
@@ -135,8 +135,8 @@ class _ExpansionState extends State<Expansion> {
               SizedBox(
                 height: 5,
               ),
-              Image.network(
-                "https://thevoicelady.com/wp-content/uploads/2017/11/sore-throat.jpg",
+              Image.asset(
+                'images/sore-throat.jpg',
                 height: 100,
               ),
               SizedBox(
@@ -163,8 +163,8 @@ class _ExpansionState extends State<Expansion> {
               SizedBox(
                 height: 5,
               ),
-              Image.network(
-                "https://miro.medium.com/max/612/1*cWbwiv72RJzrX3Xa8EEL5g.jpeg",
+              Image.asset(
+                'images/headache.jpeg',
                 height: 120,
               ),
               SizedBox(
@@ -191,8 +191,8 @@ class _ExpansionState extends State<Expansion> {
               SizedBox(
                 height: 5,
               ),
-              Image.network(
-                "https://i2.wp.com/media.nbcdfw.com/2021/03/loss-of-smell-1.jpg?quality=85&resize=1200%2C675&strip=all&ssl=1",
+              Image.asset(
+                'images/loss-of-smell.jpg',
                 height: 120,
               ),
               SizedBox(
@@ -219,8 +219,8 @@ class _ExpansionState extends State<Expansion> {
               SizedBox(
                 height: 5,
               ),
-              Image.network(
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSqQvxcrWb3HjBC2NBhzh4nDoiEh92wDxbMxxkd7BKzXQDfD49KbwdZOt-InvBi4UmVSY&usqp=CAU",
+              Image.asset(
+                'images/diarrhoea.jpeg',
                 height: 120,
               ),
               SizedBox(
@@ -253,8 +253,8 @@ class _ExpansionState extends State<Expansion> {
               ),
             ),
             children: [
-              Image.network(
-                "https://thumbs.dreamstime.com/z/vector-illustration-woman-shortness-breath-coronavirus-patient-cartoon-sick-isolated-white-style-concept-used-180241033.jpg",
+              Image.asset(
+                'images/difficulty-breathing.jpg',
                 height: 130,
               ),
               SizedBox(
@@ -278,8 +278,8 @@ class _ExpansionState extends State<Expansion> {
               Divider(
                 thickness: 3,
               ),
-              Image.network(
-                "https://media.istockphoto.com/vectors/man-have-early-symptoms-of-heart-attack-vector-id528432900?k=6&m=528432900&s=612x612&w=0&h=SQMwCRVErGwBzvR4IRpuH_2jTO0A_SLmBQZEOv8InPs=",
+              Image.asset(
+                'images/chest-pain.jpg',
                 height: 130,
               ),
               SizedBox(
@@ -303,8 +303,8 @@ class _ExpansionState extends State<Expansion> {
               Divider(
                 thickness: 3,
               ),
-              Image.network(
-                "https://parkinsonsdisease.net/wp-content/uploads/2017/02/6937.jpg",
+              Image.asset(
+                'images/lossofspeech.jpg',
                 height: 130,
               ),
               SizedBox(

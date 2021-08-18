@@ -97,10 +97,10 @@ class _HomeState extends State<Home> {
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                                Image.network(
-                                  "https://bestanimations.com/media/flags/1039074932napal-flag-gif.gif?fbclid=IwAR2BRvoOgWnIMDwY7agzl7O1880YndQ-Y60gaUpMXuzfdeoAmt_k2vO58d4",
+                                Image.asset(
+                                  'images/Nepal.gif',
                                   height: 70,
-                                )
+                                ),
                               ],
                             ),
                             SizedBox(
@@ -204,13 +204,13 @@ class _HomeState extends State<Home> {
                                     child: Row(
                                       children: [
                                         _buildStatCard('Total case',
-                                            data[1]['totalcase'], Colors.teal),
+                                            data[0]['totalcase'], Colors.teal),
                                         _buildStatCard(
                                             'Positive cases',
-                                            data[1]['positivecase'],
+                                            data[0]['positivecase'],
                                             Colors.orange),
                                         _buildStatCard('Deaths',
-                                            data[1]['deaths'], Colors.red),
+                                            data[0]['deaths'], Colors.red),
                                       ],
                                     ),
                                   ),
@@ -218,14 +218,14 @@ class _HomeState extends State<Home> {
                                     child: Row(
                                       children: <Widget>[
                                         _buildStatCard('Recovered',
-                                            data[1]['recovered'], Colors.green),
+                                            data[0]['recovered'], Colors.green),
                                         _buildStatCard(
                                             'Isolation',
-                                            data[1]['isolation'],
+                                            data[0]['isolation'],
                                             Colors.lightBlue),
                                         _buildStatCard(
                                             'Quarantined',
-                                            data[1]['quarantined'],
+                                            data[0]['quarantined'],
                                             Colors.purple),
                                       ],
                                     ),
@@ -233,7 +233,7 @@ class _HomeState extends State<Home> {
                                   Row(
                                     children: [
                                       _buildStatCard("Today Case",
-                                          data[1]['todaycase'], Colors.pink),
+                                          data[0]['todaycase'], Colors.pink),
                                     ],
                                   )
                                 ],
@@ -347,7 +347,7 @@ class _HomeState extends State<Home> {
                       ),
                       SizedBox(
                         height: 50,
-                      )
+                      ),
                     ],
                   ),
           ),
