@@ -28,20 +28,20 @@ dependencies:
   http: ^0.13.3
   flutter:
     sdk: flutter
-  flutter_native_splash: ^1.2.1
+  # flutter_native_splash: ^1.2.1
   flutter_webview_plugin: ^0.4.0
   
   
   
   
 
-flutter_native_splash:
-  color: "#ffffff"
-  image: images/corona.png
-  android: true
-  ios: true
-  # android_gravity: fill
-  # ios_content_mode: scaleAspectFill
+# flutter_native_splash:
+#   color: "#ffffff"
+#   image: images/corona.png
+#   android: true
+#   ios: true
+#   # android_gravity: fill
+#   # ios_content_mode: scaleAspectFill
   
 
   # The following adds the Cupertino Icons font to your application.
