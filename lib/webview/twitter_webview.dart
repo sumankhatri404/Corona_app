@@ -3,27 +3,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:provider/provider.dart';
 
-class DonateWebView extends StatefulWidget {
-  // const DonateWebView({ Key? key }) : super(key: key);
+class TwitterWebView extends StatefulWidget {
+  const TwitterWebView({Key key}) : super(key: key);
 
   @override
-  _DonateWebViewState createState() => _DonateWebViewState();
+  _TwitterWebViewState createState() => _TwitterWebViewState();
 }
 
-class _DonateWebViewState extends State<DonateWebView> {
-  bool showspinner = false;
+class _TwitterWebViewState extends State<TwitterWebView> {
   @override
   Widget build(BuildContext context) {
     final lang = Provider.of<LanguageProvider>(context);
     bool changeLanguage = lang.isNepali;
 
     var width = MediaQuery.of(context).size.width;
+
     return SafeArea(
       child: WebviewScaffold(
-        url: "https://donate.covid19responsefund.org/",
+        url: "https://twitter.com/mohpnep",
         hidden: true,
         appBar: AppBar(
-          title: Text(changeLanguage ? "दान" : "DONATE"),
+          title: Text(changeLanguage ? "ट्विटर" : "Twitter"),
           centerTitle: true,
           backgroundColor: Color(0xFF473F97),
           actions: [

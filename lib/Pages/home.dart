@@ -1,5 +1,10 @@
 import 'dart:convert';
+import 'package:corona_app/Provider/LanguageProvider.dart';
+import 'package:corona_app/widget/get_nepali_number.dart';
+import 'package:corona_app/widget/hotline_number_widget.dart';
+import 'package:corona_app/widget/navigation_Drawer_widget.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -45,15 +50,37 @@ class _HomeState extends State<Home> {
   }
 
   Widget build(BuildContext context) {
+    final lang = Provider.of<LanguageProvider>(context);
+    bool changeLanguage = lang.isNepali;
+
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(statusBarColor: Color(0xFF473F97)));
+
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     return Scaffold(
-      // appBar: AppBar(
-      //   backgroundColor: Color(0xFF473F97),
-      //   elevation: 0.0,
-      // ),
+      extendBodyBehindAppBar: true,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(kToolbarHeight),
+        child: AppBar(
+          backgroundColor: Color(0xFF473F97),
+          elevation: 0.0,
+          actions: [
+            Padding(
+              padding: const EdgeInsets.only(right: 20),
+              child: IconButton(
+                onPressed: () {
+                  lang.updateLanguage();
+                },
+                icon: Icon(Icons.language),
+                color: Colors.white,
+                iconSize: width * 0.08,
+              ),
+            ),
+          ],
+        ),
+      ),
+      drawer: NavigationDrawerWidget(),
       body: SafeArea(
         //pull to refresh
         child: RefreshIndicator(
@@ -73,9 +100,9 @@ class _HomeState extends State<Home> {
                     children: [
                       Container(
                         padding:
-                            const EdgeInsets.only(left: 20, right: 20, top: 50),
+                            const EdgeInsets.only(left: 20, right: 20, top: 0),
                         width: width,
-                        height: height * 0.37,
+                        height: height * 0.35,
                         decoration: BoxDecoration(
                           color: Color(0xFF473F97),
                           borderRadius: BorderRadius.only(
@@ -90,7 +117,7 @@ class _HomeState extends State<Home> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  "COVID-19",
+                                  changeLanguage ? 'कोभिड-१९' : "COVID-19",
                                   style: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 25.0,
@@ -110,7 +137,9 @@ class _HomeState extends State<Home> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Are you feeling sick?',
+                                  changeLanguage
+                                      ? 'के तपाइँ बिरामी महसुस गर्दै हुनुहुन्छ?'
+                                      : 'Are you feeling sick?',
                                   style: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 22.0,
@@ -119,13 +148,15 @@ class _HomeState extends State<Home> {
                                 ),
                                 SizedBox(height: 10),
                                 Text(
-                                  'If you feel sick with any COVID-19 symptoms, please call or text us immediately for help',
+                                  changeLanguage
+                                      ? "यदि तपाइँ कुनै कोभिड-१९ का लक्षणहरु संग बिरामी महसुस गर्नुहुन्छ, कृपया फोन गर्नुहोस् वा हामीलाई तुरुन्तै मद्दतको लागी सन्देश पठाउनुहोस्"
+                                      : 'If you feel sick with any COVID-19 symptoms, please call or text us immediately for help',
                                   style: const TextStyle(
                                     color: Colors.white70,
                                     fontSize: 15.0,
                                   ),
                                 ),
-                                SizedBox(height: 15),
+                                SizedBox(height: 30),
                                 Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -136,7 +167,7 @@ class _HomeState extends State<Home> {
                                         horizontal: 20.0,
                                       ),
                                       onPressed: () {
-                                        customLaunch('tel:+9779811536075');
+                                        customLaunch('tel:+9779851255834');
                                       },
                                       color: Colors.red,
                                       shape: RoundedRectangleBorder(
@@ -148,7 +179,9 @@ class _HomeState extends State<Home> {
                                         color: Colors.white,
                                       ),
                                       label: Text(
-                                        'Call Now',
+                                        changeLanguage
+                                            ? "सम्पर्क गर्नुहोस्"
+                                            : 'Call Now',
                                         style: TextStyle(
                                           fontSize: 16.0,
                                           fontWeight: FontWeight.w600,
@@ -162,7 +195,7 @@ class _HomeState extends State<Home> {
                                         horizontal: 20.0,
                                       ),
                                       onPressed: () {
-                                        customLaunch('sms:+9779811536075');
+                                        customLaunch('sms:+9779851255837');
                                       },
                                       color: Colors.blue,
                                       shape: RoundedRectangleBorder(
@@ -174,7 +207,9 @@ class _HomeState extends State<Home> {
                                         color: Colors.white,
                                       ),
                                       label: Text(
-                                        'Send SMS',
+                                        changeLanguage
+                                            ? "सन्देश पठाउनुहोस्"
+                                            : 'Send SMS',
                                         style: TextStyle(
                                           fontSize: 16.0,
                                           fontWeight: FontWeight.w600,
@@ -203,37 +238,92 @@ class _HomeState extends State<Home> {
                                   Flexible(
                                     child: Row(
                                       children: [
-                                        _buildStatCard('Total case',
-                                            data[0]['totalcase'], Colors.teal),
+                                        //Total case data
                                         _buildStatCard(
-                                            'Positive cases',
-                                            data[0]['positivecase'],
+                                            changeLanguage
+                                                ? "संक्रमित"
+                                                : 'Total case',
+                                            changeLanguage
+                                                ? getNepaliNumberFromText(
+                                                    data[0]['totalcase'])
+                                                : data[0]['totalcase'],
+                                            Colors.teal),
+
+                                        // Positive case data
+
+                                        _buildStatCard(
+                                            changeLanguage
+                                                ? "हाल संक्रमित संख्या"
+                                                : 'Positive cases',
+                                            changeLanguage
+                                                ? getNepaliNumberFromText(
+                                                    data[0]['positivecase'])
+                                                : data[0]['positivecase'],
                                             Colors.orange),
-                                        _buildStatCard('Deaths',
-                                            data[0]['deaths'], Colors.red),
+
+                                        //death case data
+                                        _buildStatCard(
+                                            changeLanguage
+                                                ? "मृत्यु भएको"
+                                                : 'Deaths',
+                                            changeLanguage
+                                                ? getNepaliNumberFromText(
+                                                    data[0]['deaths'])
+                                                : data[0]['deaths'],
+                                            Colors.red),
                                       ],
                                     ),
                                   ),
                                   Flexible(
                                     child: Row(
                                       children: <Widget>[
-                                        _buildStatCard('Recovered',
-                                            data[0]['recovered'], Colors.green),
+                                        //recovered case data
                                         _buildStatCard(
-                                            'Isolation',
-                                            data[0]['isolation'],
+                                            changeLanguage
+                                                ? "डिस्चार्ज केसहरु"
+                                                : 'Recovered',
+                                            changeLanguage
+                                                ? getNepaliNumberFromText(
+                                                    data[0]['recovered'])
+                                                : data[0]['recovered'],
+                                            Colors.teal),
+
+                                        //isolation case data                                          Colors.green),
+
+                                        _buildStatCard(
+                                            changeLanguage
+                                                ? "आइसोलेसनमा"
+                                                : 'Isolation',
+                                            changeLanguage
+                                                ? getNepaliNumberFromText(
+                                                    data[0]['isolation'])
+                                                : data[0]['isolation'],
                                             Colors.lightBlue),
+
+                                        //quarantined case data
                                         _buildStatCard(
-                                            'Quarantined',
-                                            data[0]['quarantined'],
+                                            changeLanguage
+                                                ? "क्वारेन्टाइनमा"
+                                                : 'Quarantined',
+                                            changeLanguage
+                                                ? getNepaliNumberFromText(
+                                                    data[0]['quarantined'])
+                                                : data[0]['quarantined'],
                                             Colors.purple),
                                       ],
                                     ),
                                   ),
                                   Row(
                                     children: [
-                                      _buildStatCard("Today Case",
-                                          data[0]['todaycase'], Colors.pink),
+                                      _buildStatCard(
+                                          changeLanguage
+                                              ? "आज संक्रमित"
+                                              : "Today Case",
+                                          changeLanguage
+                                              ? getNepaliNumberFromText(
+                                                  data[0]['todaycase'])
+                                              : data[0]['todaycase'],
+                                          Colors.pink),
                                     ],
                                   )
                                 ],
@@ -252,7 +342,9 @@ class _HomeState extends State<Home> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Prevention Tips',
+                                changeLanguage
+                                    ? "रोकथाम सुझाव"
+                                    : 'Prevention Tips',
                                 style: TextStyle(
                                     fontSize: 22, fontWeight: FontWeight.w600),
                               ),
@@ -273,7 +365,9 @@ class _HomeState extends State<Home> {
                                         SizedBox(
                                           height: 10,
                                         ),
-                                        Text('Avoid close\ncontact')
+                                        Text(changeLanguage
+                                            ? "सामाजिक दूरी\nराख्नुहोस्"
+                                            : 'Avoid close\ncontact')
                                       ],
                                     ),
                                   ),
@@ -287,7 +381,9 @@ class _HomeState extends State<Home> {
                                       SizedBox(
                                         height: 10,
                                       ),
-                                      Text('Wear a\nfacemask')
+                                      Text(changeLanguage
+                                          ? "मास्क\nलगाउनुहोस्"
+                                          : 'Wear a\nfacemask')
                                     ],
                                   )),
                                   Container(
@@ -300,7 +396,9 @@ class _HomeState extends State<Home> {
                                       SizedBox(
                                         height: 10,
                                       ),
-                                      Text('Clean your\nhands often')
+                                      Text(changeLanguage
+                                          ? "आफ्नो हात सफा\nराख्नुहोस्"
+                                          : 'Clean your\nhands often')
                                     ],
                                   )),
                                 ],
@@ -318,7 +416,7 @@ class _HomeState extends State<Home> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Symptoms",
+                              changeLanguage ? "लक्षण" : "Symptoms",
                               style: TextStyle(
                                 fontSize: 22,
                                 fontWeight: FontWeight.w600,
@@ -338,9 +436,15 @@ class _HomeState extends State<Home> {
                       SizedBox(
                         height: 20,
                       ),
+                      Hotline(),
+                      SizedBox(
+                        height: 20,
+                      ),
                       Center(
                         child: Text(
-                          "WE  ARE TOGETHER IN THIS FIGHT",
+                          changeLanguage
+                              ? "हामी यो लडाइमा संगै छौं"
+                              : "WE  ARE TOGETHER IN THIS FIGHT",
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 16),
                         ),

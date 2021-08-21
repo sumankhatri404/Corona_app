@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
+import 'Provider/LanguageProvider.dart';
 import 'Provider/connectivity_provider.dart';
 import 'Provider/internet_conn.dart';
 
@@ -25,10 +26,13 @@ class MyApp extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return MaterialApp(
               debugShowCheckedModeBanner: false,
-              home: SafeArea(child: Splash()));
+              home: SafeArea(
+                child: Splash(),
+              ));
         } else {
           return MultiProvider(
             providers: [
+              ChangeNotifierProvider(create: (ctx) => LanguageProvider()),
               ChangeNotifierProvider(
                 create: (context) => ConnectivityProvider(),
                 child: InternetConnection(),
@@ -70,6 +74,6 @@ class Init {
     // This is where you can initialize the resources needed by your app while
     // the splash screen is displayed.  Remove the following example because
     // delaying the user experience is a bad design practice!
-    await Future.delayed(Duration(seconds: 7));
+    await Future.delayed(Duration(seconds: 6));
   }
 }

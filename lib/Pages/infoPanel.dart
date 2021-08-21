@@ -1,15 +1,20 @@
+import 'package:corona_app/Provider/LanguageProvider.dart';
 import 'package:corona_app/webview/Myth_buster_webview.dart';
 import 'package:corona_app/webview/donate_webview.dart';
 import 'package:corona_app/webview/tested_positive_webview.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../Model/Datasource.dart';
 import 'Faqs.dart';
 
 class InfoPanel extends StatelessWidget {
-  // const InfoPanel({Key? key}) : super(key: key);
+   const InfoPanel({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final lang = Provider.of<LanguageProvider>(context);
+    bool changeLanguage = lang.isNepali;
+
     return Container(
       child: Column(
         children: [
@@ -26,7 +31,7 @@ class InfoPanel extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'FAQS',
+                    changeLanguage ? "सोधिने प्रश्न" : 'FAQS',
                     style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
@@ -76,7 +81,7 @@ class InfoPanel extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'DONATE',
+                    changeLanguage ? "दान गर्नुहोस्" : 'DONATE',
                     style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
@@ -103,7 +108,7 @@ class InfoPanel extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'MYTH BUSTERS',
+                    changeLanguage ? "अफवाहरु र तथ्यहरु" : 'MYTH BUSTERS',
                     style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
@@ -130,7 +135,9 @@ class InfoPanel extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'TIPS FOR CORONA POSTIVE',
+                    changeLanguage
+                        ? "कोरोना पोष्टिभ को लागी टिप्स"
+                        : 'TIPS FOR CORONA POSTIVE',
                     style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,

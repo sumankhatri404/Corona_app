@@ -3,27 +3,32 @@ import 'package:flutter/material.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:provider/provider.dart';
 
-class DonateWebView extends StatefulWidget {
-  // const DonateWebView({ Key? key }) : super(key: key);
+class MohpWiebview extends StatefulWidget {
+  const MohpWiebview({Key key}) : super(key: key);
 
   @override
-  _DonateWebViewState createState() => _DonateWebViewState();
+  _MohpWiebviewState createState() => _MohpWiebviewState();
 }
 
-class _DonateWebViewState extends State<DonateWebView> {
-  bool showspinner = false;
+class _MohpWiebviewState extends State<MohpWiebview> {
   @override
   Widget build(BuildContext context) {
     final lang = Provider.of<LanguageProvider>(context);
     bool changeLanguage = lang.isNepali;
 
     var width = MediaQuery.of(context).size.width;
+
     return SafeArea(
       child: WebviewScaffold(
-        url: "https://donate.covid19responsefund.org/",
+        url: "https://mohp.gov.np/home/",
         hidden: true,
         appBar: AppBar(
-          title: Text(changeLanguage ? "दान" : "DONATE"),
+          title: Text(
+            changeLanguage
+                ? "स्वास्थ्य तथा जनसंख्या मन्त्रालय"
+                : "Ministry of Health and \nPopulation (MoHP)",
+            style: TextStyle(fontSize: 14),
+          ),
           centerTitle: true,
           backgroundColor: Color(0xFF473F97),
           actions: [
