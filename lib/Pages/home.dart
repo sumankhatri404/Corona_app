@@ -247,7 +247,7 @@ class _HomeState extends State<Home> {
                                                 ? getNepaliNumberFromText(
                                                     data[0]['totalcase'])
                                                 : data[0]['totalcase'],
-                                            Colors.teal),
+                                            Colors.green),
 
                                         // Positive case data
 

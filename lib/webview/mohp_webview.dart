@@ -22,6 +22,8 @@ class _MohpWiebviewState extends State<MohpWiebview> {
       child: WebviewScaffold(
         url: "https://mohp.gov.np/home/",
         hidden: true,
+        withZoom: true,
+        withJavascript: true,
         appBar: AppBar(
           title: Text(
             changeLanguage

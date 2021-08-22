@@ -3,32 +3,33 @@ import 'package:flutter/material.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:provider/provider.dart';
 
-class ClimateMohp extends StatefulWidget {
-  const ClimateMohp({Key key}) : super(key: key);
+class LaboratoriesTestingCovid extends StatefulWidget {
+  const LaboratoriesTestingCovid({Key key}) : super(key: key);
 
   @override
-  _ClimateMohpState createState() => _ClimateMohpState();
+  _LaboratoriesTestingCovidState createState() =>
+      _LaboratoriesTestingCovidState();
 }
 
-class _ClimateMohpState extends State<ClimateMohp> {
+class _LaboratoriesTestingCovidState extends State<LaboratoriesTestingCovid> {
   @override
   Widget build(BuildContext context) {
+    var height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
     final lang = Provider.of<LanguageProvider>(context);
     bool changeLanguage = lang.isNepali;
 
-    var width = MediaQuery.of(context).size.width;
-
     return SafeArea(
       child: WebviewScaffold(
-        url: "https://climate.mohp.gov.np/",
+        url:
+            "https://nphl.gov.np/covid19/list-of-laboratories-testing-covid-19/",
         hidden: true,
         withZoom: true,
-        withJavascript: true,
         appBar: AppBar(
           title: Text(
             changeLanguage
-                ? "जलवायु परिवर्तन र स्वास्थ्य\nजनसंख्या मन्त्रालय"
-                : "Climate Change and Health\nMinistry",
+                ? "प्रयोगशालाहरु कोभिड-१९ को परीक्षण गर्दै"
+                : "Laboratories testing COVID-19",
             style: TextStyle(fontSize: 14),
           ),
           centerTitle: true,

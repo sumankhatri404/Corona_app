@@ -23,6 +23,7 @@ class _TestedPostiveTipsState extends State<TestedPostiveTips> {
             "https://scopeblog.stanford.edu/2020/09/29/what-to-do-if-you-test-positive-for-covid-19/",
         hidden: true,
         withZoom: true,
+        withJavascript: true,
         appBar: AppBar(
           title: Text(
             changeLanguage

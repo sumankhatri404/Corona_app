@@ -22,6 +22,8 @@ class _CovidWebViewState extends State<CovidWebView> {
       child: WebviewScaffold(
         url: "https://covid19.mohp.gov.np/",
         hidden: true,
+        withZoom: true,
+        withJavascript: true,
         appBar: AppBar(
           title: Text(
             changeLanguage

@@ -3,7 +3,6 @@ import 'package:corona_app/webview/climate_mohp.dart';
 import 'package:corona_app/webview/covid19_webview.dart';
 import 'package:corona_app/webview/facebook_webview.dart';
 import 'package:corona_app/webview/health_emergency.dart';
-import 'package:corona_app/webview/health_research.dart';
 import 'package:corona_app/webview/health_service_webview.dart';
 import 'package:corona_app/webview/mohp_webview.dart';
 import 'package:corona_app/webview/twitter_webview.dart';
@@ -80,7 +79,7 @@ class _ImportantLinksState extends State<ImportantLinks> {
                             Text(
                               changeLanguage
                                   ? "स्वास्थ्य तथा जनसंख्या मन्त्रालय नेपाल"
-                                  : "Ministry of Health and Population\nNepal",
+                                  : "Ministry of Health and Population Nepal",
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                               ),
@@ -130,7 +129,7 @@ class _ImportantLinksState extends State<ImportantLinks> {
                             Text(
                               changeLanguage
                                   ? "स्वास्थ्य तथा जनसंख्या मन्त्रालय नेपाल"
-                                  : "Ministry of Health and Population\nNepal",
+                                  : "Ministry of Health and Population Nepal",
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                               ),
@@ -232,7 +231,7 @@ class _ImportantLinksState extends State<ImportantLinks> {
                               Text(
                                 changeLanguage
                                     ? "स्वास्थ्य तथा जनसंख्या मन्त्रालय"
-                                    : "Ministry of Health and \nPopulation (MoHP)",
+                                    : "Ministry of Health and Population\n(MoHP)",
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -340,7 +339,7 @@ class _ImportantLinksState extends State<ImportantLinks> {
                               Text(
                                 changeLanguage
                                     ? "स्वास्थ्य आपतकालीन परिचालन\nकेन्द्र"
-                                    : "Health Emergency Operation\nCenter",
+                                    : "Health Emergency Operation Center",
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                 ),

@@ -22,6 +22,8 @@ class _FacebookWebState extends State<FacebookWeb> {
       child: WebviewScaffold(
         url: "https://www.facebook.com/mohpnep/",
         hidden: true,
+        withZoom: true,
+        withJavascript: true,
         appBar: AppBar(
           title: Text(changeLanguage ? "फेसबुक" : "Facebook"),
           centerTitle: true,

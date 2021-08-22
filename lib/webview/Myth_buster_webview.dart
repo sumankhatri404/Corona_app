@@ -22,6 +22,7 @@ class _MythBusterWebViewState extends State<MythBusterWebView> {
             "https://www.spotlightnepal.com/2020/03/12/coronavirus-disease-covid-19-advice-public-myth-busters/",
         hidden: true,
         withZoom: true,
+        withJavascript: true,
         appBar: AppBar(
           title: Text(changeLanguage ? "अफवाहरु र तथ्यहरु" : "MYTHS BUSTERS"),
           centerTitle: true,

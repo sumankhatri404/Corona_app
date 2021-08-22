@@ -22,6 +22,8 @@ class _DonateWebViewState extends State<DonateWebView> {
       child: WebviewScaffold(
         url: "https://donate.covid19responsefund.org/",
         hidden: true,
+        withZoom: true,
+        withJavascript: true,
         appBar: AppBar(
           title: Text(changeLanguage ? "दान" : "DONATE"),
           centerTitle: true,

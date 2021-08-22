@@ -23,6 +23,8 @@ class _HealthServiceDepartmentState extends State<HealthServiceDepartment> {
       child: WebviewScaffold(
         url: "https://dohs.gov.np/",
         hidden: true,
+        withZoom: true,
+        withJavascript: true,
         appBar: AppBar(
           title: Text(
             changeLanguage

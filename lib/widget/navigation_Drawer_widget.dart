@@ -1,6 +1,9 @@
 import 'package:corona_app/Pages/Faqs.dart';
+import 'package:corona_app/Pages/about_app.dart';
 import 'package:corona_app/Pages/important_links.dart';
+import 'package:corona_app/Pages/oxygen_refill_contact.dart';
 import 'package:corona_app/Provider/LanguageProvider.dart';
+import 'package:corona_app/webview/laboratories_tesing_covid-19.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -38,6 +41,30 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
               text: changeLanguage ? "महत्त्वपूर्ण लिंकहरु" : "Important links",
               icon: Icons.link,
               onClicked: () => selectedItem(context, 1),
+            ),
+            SizedBox(height: 16),
+            buildMenuItem(
+              text: changeLanguage ? "एपको बारेमा " : "About the app",
+              icon: Icons.info,
+              onClicked: () => selectedItem(context, 2),
+            ),
+            SizedBox(
+              height: 16,
+            ),
+            buildMenuItem(
+              text: changeLanguage ? "अक्सिजन रिफिल " : "Oxygen Refilling",
+              icon: Icons.circle_sharp,
+              onClicked: () => selectedItem(context, 3),
+            ),
+            SizedBox(
+              height: 16,
+            ),
+            buildMenuItem(
+              text: changeLanguage
+                  ? "प्रयोगशाला कोभिड-१९ को परीक्षण गर्दै"
+                  : "Laboratories testing COVID-19",
+              icon: Icons.science,
+              onClicked: () => selectedItem(context, 4),
             )
           ],
         ),
@@ -73,6 +100,20 @@ void selectedItem(BuildContext context, int index) {
     case 1:
       Navigator.of(context)
           .push(MaterialPageRoute(builder: (context) => ImportantLinks()));
+      break;
+
+    case 2:
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (context) => AboutApp()));
+      break;
+
+    case 3:
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (context) => OxygenRefillContact()));
+      break;
+    case 4:
+      Navigator.of(context).push(
+          MaterialPageRoute(builder: (context) => LaboratoriesTestingCovid()));
       break;
   }
 }

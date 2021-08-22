@@ -22,6 +22,8 @@ class _TwitterWebViewState extends State<TwitterWebView> {
       child: WebviewScaffold(
         url: "https://twitter.com/mohpnep",
         hidden: true,
+        withZoom: true,
+        withJavascript: true,
         appBar: AppBar(
           title: Text(changeLanguage ? "ट्विटर" : "Twitter"),
           centerTitle: true,

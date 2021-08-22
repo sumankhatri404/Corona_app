@@ -22,6 +22,8 @@ class _HealthEmergencyState extends State<HealthEmergency> {
       child: WebviewScaffold(
         url: "https://heoc.mohp.gov.np/",
         hidden: true,
+        withZoom: true,
+        withJavascript: true,
         appBar: AppBar(
           title: Text(
             changeLanguage
