@@ -1,7 +1,11 @@
+import 'package:corona_app/Pages/Faqs.dart';
+import 'package:corona_app/Pages/check_status.dart';
+import 'package:corona_app/Pages/suspect_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
+import 'Pages/important_links.dart';
 import 'Provider/LanguageProvider.dart';
 import 'Provider/connectivity_provider.dart';
 import 'Provider/internet_conn.dart';
@@ -46,7 +50,8 @@ class MyApp extends StatelessWidget {
                 scaffoldBackgroundColor: Colors.white,
                 visualDensity: VisualDensity.adaptivePlatformDensity,
               ),
-              home: InternetConnection(),
+              // home: InternetConnection(),
+              home: CheckStatus(),
             ),
           );
         }

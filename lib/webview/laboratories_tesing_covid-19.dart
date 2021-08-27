@@ -14,7 +14,6 @@ class LaboratoriesTestingCovid extends StatefulWidget {
 class _LaboratoriesTestingCovidState extends State<LaboratoriesTestingCovid> {
   @override
   Widget build(BuildContext context) {
-    var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     final lang = Provider.of<LanguageProvider>(context);
     bool changeLanguage = lang.isNepali;
@@ -25,6 +24,7 @@ class _LaboratoriesTestingCovidState extends State<LaboratoriesTestingCovid> {
             "https://nphl.gov.np/covid19/list-of-laboratories-testing-covid-19/",
         hidden: true,
         withZoom: true,
+        withJavascript: true,
         appBar: AppBar(
           title: Text(
             changeLanguage

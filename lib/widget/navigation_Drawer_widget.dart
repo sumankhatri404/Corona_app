@@ -1,7 +1,9 @@
 import 'package:corona_app/Pages/Faqs.dart';
 import 'package:corona_app/Pages/about_app.dart';
+import 'package:corona_app/Pages/check_status.dart';
 import 'package:corona_app/Pages/important_links.dart';
 import 'package:corona_app/Pages/oxygen_refill_contact.dart';
+import 'package:corona_app/Pages/suspect_form.dart';
 import 'package:corona_app/Provider/LanguageProvider.dart';
 import 'package:corona_app/webview/laboratories_tesing_covid-19.dart';
 import 'package:flutter/material.dart';
@@ -65,6 +67,22 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
                   : "Laboratories testing COVID-19",
               icon: Icons.science,
               onClicked: () => selectedItem(context, 4),
+            ),
+            SizedBox(
+              height: 16,
+            ),
+            buildMenuItem(
+              text: changeLanguage ? "शंकास्पद बिरामी रिपोर्ट" : "Suspect form",
+              icon: Icons.chat,
+              onClicked: () => selectedItem(context, 5),
+            ),
+            SizedBox(
+              height: 16,
+            ),
+            buildMenuItem(
+              text: "check status",
+              icon: Icons.chat,
+              onClicked: () => selectedItem(context, 6),
             )
           ],
         ),
@@ -114,6 +132,16 @@ void selectedItem(BuildContext context, int index) {
     case 4:
       Navigator.of(context).push(
           MaterialPageRoute(builder: (context) => LaboratoriesTestingCovid()));
+      break;
+
+    case 5:
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (context) => SuspectForm()));
+      break;
+
+    case 5:
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (context) => CheckStatus()));
       break;
   }
 }

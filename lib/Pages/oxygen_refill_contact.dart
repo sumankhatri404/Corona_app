@@ -22,7 +22,6 @@ class _OxygenRefillContactState extends State<OxygenRefillContact> {
 
   @override
   Widget build(BuildContext context) {
-    var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     final lang = Provider.of<LanguageProvider>(context);
     bool changeLanguage = lang.isNepali;

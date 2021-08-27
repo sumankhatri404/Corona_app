@@ -15,7 +15,6 @@ class _AboutAppState extends State<AboutApp> {
     final lang = Provider.of<LanguageProvider>(context);
     bool changeLanguage = lang.isNepali;
 
-    var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
 
     return SafeArea(
