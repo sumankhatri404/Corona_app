@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:corona_app/widget/LoadingSpinner.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -13,13 +14,11 @@ class CheckStatus extends StatefulWidget {
 }
 
 class _CheckStatusState extends State<CheckStatus> {
-  bool loading = true;
-
   String result = "";
   Future checkMobileNUmber() async {
+    loadingSpinner(context);
     setState(() {
       result = "";
-      loading = false;
     });
     try {
       String url =
