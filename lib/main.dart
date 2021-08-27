@@ -50,8 +50,8 @@ class MyApp extends StatelessWidget {
                 scaffoldBackgroundColor: Colors.white,
                 visualDensity: VisualDensity.adaptivePlatformDensity,
               ),
-              // home: InternetConnection(),
-              home: CheckStatus(),
+              home: InternetConnection(),
+              // home: CheckStatus(),
             ),
           );
         }

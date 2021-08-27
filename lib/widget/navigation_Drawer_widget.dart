@@ -80,7 +80,7 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
               height: 16,
             ),
             buildMenuItem(
-              text: "check status",
+              text: changeLanguage ? "स्थिति जाँच गर्नुहोस्" : "check status",
               icon: Icons.chat,
               onClicked: () => selectedItem(context, 6),
             )
@@ -139,7 +139,7 @@ void selectedItem(BuildContext context, int index) {
           .push(MaterialPageRoute(builder: (context) => SuspectForm()));
       break;
 
-    case 5:
+    case 6:
       Navigator.of(context)
           .push(MaterialPageRoute(builder: (context) => CheckStatus()));
       break;

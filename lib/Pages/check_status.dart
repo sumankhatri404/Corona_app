@@ -16,7 +16,6 @@ class CheckStatus extends StatefulWidget {
 class _CheckStatusState extends State<CheckStatus> {
   String result = "";
   Future checkMobileNUmber() async {
-    loadingSpinner(context);
     setState(() {
       result = "";
     });
@@ -27,6 +26,33 @@ class _CheckStatusState extends State<CheckStatus> {
       var response =
           await http.post(Uri.parse(url), body: {'number': number.text});
       var checkNumber = json.decode(response.body);
+
+      print(checkNumber);
+
+      if (checkNumber.isEmpty) {
+        setState(() {
+          showDialog(
+            context: context,
+            builder: (ctx) => AlertDialog(
+              title: Text(
+                "No records found !!! Please enter valid credentials",
+                style: TextStyle(color: Colors.amber),
+              ),
+              actions: [
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                    // Navigator.of(context)
+                    //     .push(MaterialPageRoute(builder: (context) => Home()));
+                  },
+                  child: Text("okay"),
+                ),
+              ],
+            ),
+          );
+        });
+        number.clear();
+      }
 
       if (checkNumber[0]['status'] == "1") {
         setState(() {
@@ -42,8 +68,9 @@ class _CheckStatusState extends State<CheckStatus> {
               actions: [
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.of(context)
-                        .push(MaterialPageRoute(builder: (context) => Home()));
+                    Navigator.pop(context);
+                    // Navigator.of(context)
+                    //     .push(MaterialPageRoute(builder: (context) => Home()));
                   },
                   child: Text("okay"),
                 ),
@@ -51,6 +78,7 @@ class _CheckStatusState extends State<CheckStatus> {
             ),
           );
         });
+        number.clear();
       } else {
         setState(() {
           showDialog(
@@ -63,8 +91,9 @@ class _CheckStatusState extends State<CheckStatus> {
               actions: [
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.of(context)
-                        .push(MaterialPageRoute(builder: (context) => Home()));
+                    Navigator.pop(context);
+                    // Navigator.of(context)
+                    //     .push(MaterialPageRoute(builder: (context) => Home()));
                   },
                   child: Text("okay"),
                 ),
@@ -72,6 +101,7 @@ class _CheckStatusState extends State<CheckStatus> {
             ),
           );
         });
+        number.clear();
       }
       print(checkNumber);
     } catch (e) {

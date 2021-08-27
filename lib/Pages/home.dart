@@ -229,107 +229,99 @@ class _HomeState extends State<Home> {
                         height: 10,
                       ),
                       Container(
+                        height: height * 0.37,
+                        // color: Colors.indigo,
                         child: Column(
                           children: [
-                            Container(
-                              height: height * 0.37,
-                              // color: Colors.indigo,
-                              child: Column(
+                            Flexible(
+                              child: Row(
                                 children: [
-                                  Flexible(
-                                    child: Row(
-                                      children: [
-                                        //Total case data
-                                        _buildStatCard(
-                                            changeLanguage
-                                                ? "संक्रमित"
-                                                : 'Total case',
-                                            changeLanguage
-                                                ? getNepaliNumberFromText(
-                                                    data[0]['totalcase'])
-                                                : data[0]['totalcase'],
-                                            Colors.green),
+                                  //Total case data
+                                  _buildStatCard(
+                                      changeLanguage
+                                          ? "संक्रमित"
+                                          : 'Total case',
+                                      changeLanguage
+                                          ? getNepaliNumberFromText(
+                                              data[0]['totalcase'])
+                                          : data[0]['totalcase'],
+                                      Colors.green),
 
-                                        // Positive case data
+                                  // Positive case data
 
-                                        _buildStatCard(
-                                            changeLanguage
-                                                ? "हाल संक्रमित संख्या"
-                                                : 'Positive cases',
-                                            changeLanguage
-                                                ? getNepaliNumberFromText(
-                                                    data[0]['positivecase'])
-                                                : data[0]['positivecase'],
-                                            Colors.orange),
+                                  _buildStatCard(
+                                      changeLanguage
+                                          ? "हाल संक्रमित संख्या"
+                                          : 'Positive cases',
+                                      changeLanguage
+                                          ? getNepaliNumberFromText(
+                                              data[0]['positivecase'])
+                                          : data[0]['positivecase'],
+                                      Colors.orange),
 
-                                        //death case data
-                                        _buildStatCard(
-                                            changeLanguage
-                                                ? "मृत्यु भएको"
-                                                : 'Deaths',
-                                            changeLanguage
-                                                ? getNepaliNumberFromText(
-                                                    data[0]['deaths'])
-                                                : data[0]['deaths'],
-                                            Colors.red),
-                                      ],
-                                    ),
-                                  ),
-                                  Flexible(
-                                    child: Row(
-                                      children: <Widget>[
-                                        //recovered case data
-                                        _buildStatCard(
-                                            changeLanguage
-                                                ? "डिस्चार्ज केसहरु"
-                                                : 'Recovered',
-                                            changeLanguage
-                                                ? getNepaliNumberFromText(
-                                                    data[0]['recovered'])
-                                                : data[0]['recovered'],
-                                            Colors.teal),
-
-                                        //isolation case data                                          Colors.green),
-
-                                        _buildStatCard(
-                                            changeLanguage
-                                                ? "आइसोलेसनमा"
-                                                : 'Isolation',
-                                            changeLanguage
-                                                ? getNepaliNumberFromText(
-                                                    data[0]['isolation'])
-                                                : data[0]['isolation'],
-                                            Colors.lightBlue),
-
-                                        //quarantined case data
-                                        _buildStatCard(
-                                            changeLanguage
-                                                ? "क्वारेन्टाइनमा"
-                                                : 'Quarantined',
-                                            changeLanguage
-                                                ? getNepaliNumberFromText(
-                                                    data[0]['quarantined'])
-                                                : data[0]['quarantined'],
-                                            Colors.purple),
-                                      ],
-                                    ),
-                                  ),
-                                  Row(
-                                    children: [
-                                      _buildStatCard(
-                                          changeLanguage
-                                              ? "आज संक्रमित"
-                                              : "Today Case",
-                                          changeLanguage
-                                              ? getNepaliNumberFromText(
-                                                  data[0]['todaycase'])
-                                              : data[0]['todaycase'],
-                                          Colors.pink),
-                                    ],
-                                  )
+                                  //death case data
+                                  _buildStatCard(
+                                      changeLanguage ? "मृत्यु भएको" : 'Deaths',
+                                      changeLanguage
+                                          ? getNepaliNumberFromText(
+                                              data[0]['deaths'])
+                                          : data[0]['deaths'],
+                                      Colors.red),
                                 ],
                               ),
                             ),
+                            Flexible(
+                              child: Row(
+                                children: <Widget>[
+                                  //recovered case data
+                                  _buildStatCard(
+                                      changeLanguage
+                                          ? "डिस्चार्ज केसहरु"
+                                          : 'Recovered',
+                                      changeLanguage
+                                          ? getNepaliNumberFromText(
+                                              data[0]['recovered'])
+                                          : data[0]['recovered'],
+                                      Colors.teal),
+
+                                  //isolation case data
+
+                                  _buildStatCard(
+                                      changeLanguage
+                                          ? "आइसोलेसनमा"
+                                          : 'Isolation',
+                                      changeLanguage
+                                          ? getNepaliNumberFromText(
+                                              data[0]['isolation'])
+                                          : data[0]['isolation'],
+                                      Colors.lightBlue),
+
+                                  //quarantined case data
+                                  _buildStatCard(
+                                      changeLanguage
+                                          ? "क्वारेन्टाइनमा"
+                                          : 'Quarantined',
+                                      changeLanguage
+                                          ? getNepaliNumberFromText(
+                                              data[0]['quarantined'])
+                                          : data[0]['quarantined'],
+                                      Colors.purple),
+                                ],
+                              ),
+                            ),
+                            Row(
+                              children: [
+                                _buildStatCard(
+                                    changeLanguage
+                                        ? "आज संक्रमित"
+                                        : "Today Case",
+                                    changeLanguage
+                                        ? getNepaliNumberFromText(
+                                            data[0]['todaycase'])
+                                        : data[0]['todaycase'],
+                                    Colors.pink),
+                              ],
+                            )
                           ],
                         ),
                       ),
