@@ -1,8 +1,6 @@
 import 'dart:convert';
 
-import 'package:corona_app/Model/Datasource.dart';
 import 'package:corona_app/Provider/LanguageProvider.dart';
-import 'package:corona_app/webview/climate_mohp.dart';
 import 'package:corona_app/webview/covid19_webview.dart';
 import 'package:corona_app/webview/facebook_webview.dart';
 import 'package:corona_app/webview/health_emergency.dart';
@@ -27,13 +25,16 @@ class _ImportantLinksState extends State<ImportantLinks> {
   Future importantLinks() async {
     var url =
         Uri.parse("http://coronaapinepal.000webhostapp.com/media_api.php");
-    var response = await http.get(url);
+    var response = await http.get(
+      url,
+      headers: {"Content-Type": "application/json"},
+    );
     var jsondata = json.decode(response.body);
     print(jsondata);
     setState(() {
       data = jsondata;
       loading = false;
-      print(data);
+      // print(data);
     });
   }
 
@@ -84,30 +85,7 @@ class _ImportantLinksState extends State<ImportantLinks> {
                     color: Color(0xFF473F97),
                   )),
                 )
-              :
-              // : ListView.builder(
-              //   itemCount: DataSource.iconslist.length,
-              //   itemBuilder: (context,index){
-              //   return Container(
-              //      height: height * 0.12,
-              //           color: Colors.transparent,
-
-              //           child: Row(
-              //             mainAxisAlignment: MainAxisAlignment.spaceAround,
-              //             children: [
-              //               IconButton(
-              //                 onPressed: () {},
-              //                 icon: DataSource.iconslist[index]['Icon'],
-
-              //                 ),
-              //             ]
-              //               ),
-
-              //               );
-
-              //   },),
-
-              Column(
+              : Column(
                   children: [
                     //facebook web view
                     GestureDetector(
@@ -137,13 +115,13 @@ class _ImportantLinksState extends State<ImportantLinks> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    data[0]['title'],
+                                    data[4]['title'],
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
                                   Text(
-                                    data[0]['link'],
+                                    data[4]['link'],
                                     style: TextStyle(
                                         decoration: TextDecoration.underline,
                                         color: Colors.blue),
@@ -186,13 +164,13 @@ class _ImportantLinksState extends State<ImportantLinks> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    data[1]['title'],
+                                    data[3]['title'],
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
                                   Text(
-                                    data[1]['link'],
+                                    data[3]['link'],
                                     style: TextStyle(
                                         decoration: TextDecoration.underline,
                                         color: Colors.blue),
@@ -206,7 +184,7 @@ class _ImportantLinksState extends State<ImportantLinks> {
                     ),
                     Divider(),
 
-                    //corona info ministry website
+                    //corona info ministry website covid19.mohp.gov.np
                     GestureDetector(
                       onTap: () {
                         Navigator.push(
@@ -221,11 +199,14 @@ class _ImportantLinksState extends State<ImportantLinks> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            IconButton(
-                              onPressed: () {},
-                              icon: FaIcon(
-                                FontAwesomeIcons.globe,
-                                size: 40,
+                            Padding(
+                              padding: const EdgeInsets.only(left: 10),
+                              child: IconButton(
+                                onPressed: () {},
+                                icon: FaIcon(
+                                  FontAwesomeIcons.globe,
+                                  size: 40,
+                                ),
                               ),
                             ),
                             Padding(
@@ -233,19 +214,23 @@ class _ImportantLinksState extends State<ImportantLinks> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
-                                    changeLanguage
-                                        ? "कोरोना जानकारी-स्वास्थ्य तथा जनसंख्या\nमन्त्रालय"
-                                        : "Corona info-Ministry of Health and\nPopulation",
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 15),
+                                    child: Text(
+                                      data[5]['title'],
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
                                   ),
-                                  Text(
-                                    "https://covid19.mohp.gov.np/",
-                                    style: TextStyle(
-                                        decoration: TextDecoration.underline,
-                                        color: Colors.blue),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 20),
+                                    child: Text(
+                                      data[5]['link'],
+                                      style: TextStyle(
+                                          decoration: TextDecoration.underline,
+                                          color: Colors.blue),
+                                    ),
                                   )
                                 ],
                               ),
@@ -256,8 +241,7 @@ class _ImportantLinksState extends State<ImportantLinks> {
                     ),
                     Divider(),
 
-                    //Ministry website
-
+                    //ministry of health and population mohp.gov.np/home/
                     GestureDetector(
                       onTap: () {
                         Navigator.push(
@@ -275,11 +259,14 @@ class _ImportantLinksState extends State<ImportantLinks> {
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              IconButton(
-                                onPressed: () {},
-                                icon: FaIcon(
-                                  FontAwesomeIcons.globe,
-                                  size: 40,
+                              Padding(
+                                padding: const EdgeInsets.only(left: 15),
+                                child: IconButton(
+                                  onPressed: () {},
+                                  icon: FaIcon(
+                                    FontAwesomeIcons.globe,
+                                    size: 40,
+                                  ),
                                 ),
                               ),
                               Padding(
@@ -287,19 +274,24 @@ class _ImportantLinksState extends State<ImportantLinks> {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
-                                      changeLanguage
-                                          ? "स्वास्थ्य तथा जनसंख्या मन्त्रालय"
-                                          : "Ministry of Health and Population\n(MoHP)",
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 20),
+                                      child: Text(
+                                        data[1]['title'],
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
                                     ),
-                                    Text(
-                                      "https://mohp.gov.np/home/",
-                                      style: TextStyle(
-                                          decoration: TextDecoration.underline,
-                                          color: Colors.blue),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 20),
+                                      child: Text(
+                                        data[1]['link'],
+                                        style: TextStyle(
+                                            decoration:
+                                                TextDecoration.underline,
+                                            color: Colors.blue),
+                                      ),
                                     )
                                   ],
                                 ),
@@ -311,7 +303,7 @@ class _ImportantLinksState extends State<ImportantLinks> {
                     ),
                     Divider(),
 
-                    //Department of health
+                    //Department of health dohs.gov.np/
 
                     GestureDetector(
                       onTap: () {
@@ -330,11 +322,14 @@ class _ImportantLinksState extends State<ImportantLinks> {
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: [
-                              IconButton(
-                                onPressed: () {},
-                                icon: FaIcon(
-                                  FontAwesomeIcons.globe,
-                                  size: 40,
+                              Padding(
+                                padding: const EdgeInsets.only(right: 30),
+                                child: IconButton(
+                                  onPressed: () {},
+                                  icon: FaIcon(
+                                    FontAwesomeIcons.globe,
+                                    size: 40,
+                                  ),
                                 ),
                               ),
                               Padding(
@@ -342,16 +337,17 @@ class _ImportantLinksState extends State<ImportantLinks> {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
-                                      changeLanguage
-                                          ? "स्वास्थ्य सेवा विभाग"
-                                          : "Health Service Department",
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
+                                    Padding(
+                                      padding: const EdgeInsets.only(right: 20),
+                                      child: Text(
+                                        data[2]['title'],
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
                                     ),
                                     Text(
-                                      "https://dohs.gov.np/",
+                                      data[2]['link'],
                                       style: TextStyle(
                                           decoration: TextDecoration.underline,
                                           color: Colors.blue),
@@ -366,7 +362,8 @@ class _ImportantLinksState extends State<ImportantLinks> {
                     ),
                     Divider(),
 
-                    //Health Emergency Operation Center
+                    //health emergency operation center heoc.mohp.gov.np
+
                     GestureDetector(
                       onTap: () {
                         Navigator.push(
@@ -397,15 +394,13 @@ class _ImportantLinksState extends State<ImportantLinks> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      changeLanguage
-                                          ? "स्वास्थ्य आपतकालीन परिचालन\nकेन्द्र"
-                                          : "Health Emergency Operation Center",
+                                      data[0]['title'],
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
                                     Text(
-                                      "https://heoc.mohp.gov.np/",
+                                      data[0]['link'],
                                       style: TextStyle(
                                           decoration: TextDecoration.underline,
                                           color: Colors.blue),
@@ -418,117 +413,6 @@ class _ImportantLinksState extends State<ImportantLinks> {
                         ),
                       ),
                     ),
-                    Divider(),
-
-                    //Nepal Health Research Council
-                    // GestureDetector(
-                    //   onTap: () {
-                    //     Navigator.push(
-                    //       context,
-                    //       MaterialPageRoute(
-                    //           builder: (context) => HealthResearchwebview()),
-                    //     );
-                    //   },
-                    //   child: Padding(
-                    //     padding: const EdgeInsets.only(left: 10, right: 30),
-                    //     child: Container(
-                    //       height: height * 0.12,
-                    //       color: Colors.transparent,
-                    //       child: Row(
-                    //         mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    //         crossAxisAlignment: CrossAxisAlignment.stretch,
-                    //         children: [
-                    //           IconButton(
-                    //             onPressed: () {},
-                    //             icon: FaIcon(
-                    //               FontAwesomeIcons.globe,
-                    //               size: 40,
-                    //             ),
-                    //           ),
-                    //           Padding(
-                    //             padding: const EdgeInsets.only(top: 30),
-                    //             child: Column(
-                    //               crossAxisAlignment: CrossAxisAlignment.start,
-                    //               mainAxisAlignment: MainAxisAlignment.start,
-                    //               children: [
-                    //                 Text(
-                    //                   changeLanguage
-                    //                       ? "नेपाल स्वास्थ्य अनुसन्धान परिषद"
-                    //                       : "Nepal Health Research Council",
-                    //                   style: TextStyle(
-                    //                     fontWeight: FontWeight.bold,
-                    //                   ),
-                    //                 ),
-                    //                 Text(
-                    //                   "http://nhrc.gov.np/",
-                    //                   style: TextStyle(
-                    //                       decoration: TextDecoration.underline,
-                    //                       color: Colors.blue),
-                    //                 )
-                    //               ],
-                    //             ),
-                    //           )
-                    //         ],
-                    //       ),
-                    //     ),
-                    //   ),
-                    // ),
-                    Divider(),
-
-                    //Climate Change and Health, Ministry of Health and Population
-
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ClimateMohp()),
-                        );
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 20, right: 20),
-                        child: Container(
-                          height: height * 0.12,
-                          color: Colors.transparent,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: [
-                              IconButton(
-                                onPressed: () {},
-                                icon: FaIcon(
-                                  FontAwesomeIcons.globe,
-                                  size: 40,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 30),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      changeLanguage
-                                          ? "जलवायु परिवर्तन र स्वास्थ्य, स्वास्थ्य\nतथा जनसंख्या मन्त्रालय"
-                                          : "Climate Change and Health, Ministry\nof Health and Population",
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    Text(
-                                      "https://climate.mohp.gov.np/",
-                                      style: TextStyle(
-                                          decoration: TextDecoration.underline,
-                                          color: Colors.blue),
-                                    )
-                                  ],
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    Divider(),
                   ],
                 ),
         ),

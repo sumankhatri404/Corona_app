@@ -31,7 +31,7 @@ class _HomeState extends State<Home> {
     setState(() {
       data = jsondata;
       loading = false;
-      print(data);
+      // print(data);
     });
   }
 
@@ -403,7 +403,6 @@ class _HomeState extends State<Home> {
                       SizedBox(
                         height: 5,
                       ),
-
                       ListTile(
                         title: Text(
                           changeLanguage ? "लक्षण" : "Symptoms",
@@ -428,25 +427,6 @@ class _HomeState extends State<Home> {
                           ),
                         ),
                       ),
-                      // Column(
-                      //   crossAxisAlignment: CrossAxisAlignment.start,
-                      //   children: [
-                      //     Padding(
-                      //       padding: const EdgeInsets.only(left: 25),
-                      //       child: Text(
-                      //         changeLanguage ? "लक्षण" : "Symptoms",
-                      //         style: TextStyle(
-                      //           fontSize: 22,
-                      //           fontWeight: FontWeight.w600,
-                      //         ),
-                      //       ),
-                      //     ),
-                      //     SizedBox(
-                      //       height: 10,
-                      //     ),
-
-                      //   ],
-                      // ),
                       Symptoms(),
                       SizedBox(height: height * 0.1),
                       InfoPanel(),

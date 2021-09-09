@@ -1,10 +1,7 @@
 import 'dart:convert';
 
-import 'package:corona_app/widget/LoadingSpinner.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-
-import 'home.dart';
 
 class CheckStatus extends StatefulWidget {
   const CheckStatus({Key key}) : super(key: key);
@@ -62,7 +59,7 @@ class _CheckStatusState extends State<CheckStatus> {
             context: context,
             builder: (ctx) => AlertDialog(
               title: Text(
-                "Your status has been completed",
+                "Your status has been completed,our team will contact you soon !!!",
                 style: TextStyle(color: Colors.green),
               ),
               actions: [

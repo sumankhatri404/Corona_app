@@ -14,7 +14,6 @@ class _SymptomsState extends State<Symptoms> {
     var width = MediaQuery.of(context).size.width;
     return SafeArea(
       child: Container(
-        // color: Colors.red,
         height: height * 0.25,
         width: width,
         child: ListView(
@@ -71,48 +70,7 @@ class _SymptomsState extends State<Symptoms> {
             ),
           ],
         ),
-        // child: ListView(
-        //   scrollDirection: Axis.horizontal,
-        //   children: [
-        //     Card(
-        //       child: Container(
-        //         width: width * 0.4,
-        //         height: height * 0.4,
-        //         color: Colors.yellow,
-        //       ),
-        //     ),
-        //     Card(
-        //       child: Container(
-        //         width: width * 0.4,
-        //         height: height * 0.4,
-        //         color: Colors.blue,
-        //       ),
-        //     ),
-        //     Card(
-        //       child: Container(
-        //         width: width * 0.4,
-        //         height: height * 0.4,
-        //         color: Colors.red,
-        //       ),
-        //     ),
-        //     Card(
-        //       child: Container(
-        //         width: width * 0.4,
-        //         height: height * 0.4,
-        //         color: Colors.green,
-        //       ),
-        //     ),
-        //     Card(
-        //       child: Container(
-        //         width: width * 0.4,
-        //         height: height * 0.4,
-        //         color: Colors.purple,
-        //       ),
-        //     ),
-        //   ],
-        // ),
       ),
     );
   }
 }
-
