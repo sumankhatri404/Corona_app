@@ -26,7 +26,10 @@ class _HomeState extends State<Home> {
   Future getLatestupdate() async {
     var url =
         Uri.parse("https://coronaapinepal.000webhostapp.com/fetchapi.php");
-    var response = await http.get(url);
+    var response = await http.get(
+      url,
+      headers: {"Content-Type": "application/json"},
+    );
     var jsondata = json.decode(response.body);
     setState(() {
       data = jsondata;
@@ -39,7 +42,6 @@ class _HomeState extends State<Home> {
   void initState() {
     super.initState();
     getLatestupdate();
-    // getWorldLatestupdate();
   }
 
   void customLaunch(command) async {
@@ -245,7 +247,8 @@ class _HomeState extends State<Home> {
                                           ? getNepaliNumberFromText(
                                               data[0]['totalcase'])
                                           : data[0]['totalcase'],
-                                      Colors.green),
+                                      Colors.green,
+                                      null),
 
                                   // Positive case data
 
@@ -257,7 +260,8 @@ class _HomeState extends State<Home> {
                                           ? getNepaliNumberFromText(
                                               data[0]['positivecase'])
                                           : data[0]['positivecase'],
-                                      Colors.orange),
+                                      Colors.orange,
+                                      null),
 
                                   //death case data
                                   _buildStatCard(
@@ -266,7 +270,8 @@ class _HomeState extends State<Home> {
                                           ? getNepaliNumberFromText(
                                               data[0]['deaths'])
                                           : data[0]['deaths'],
-                                      Colors.red),
+                                      Colors.red,
+                                      null),
                                 ],
                               ),
                             ),
@@ -282,7 +287,8 @@ class _HomeState extends State<Home> {
                                           ? getNepaliNumberFromText(
                                               data[0]['recovered'])
                                           : data[0]['recovered'],
-                                      Colors.teal),
+                                      Colors.teal,
+                                      null),
 
                                   //isolation case data
 
@@ -294,7 +300,8 @@ class _HomeState extends State<Home> {
                                           ? getNepaliNumberFromText(
                                               data[0]['isolation'])
                                           : data[0]['isolation'],
-                                      Colors.lightBlue),
+                                      Colors.lightBlue,
+                                      null),
 
                                   //quarantined case data
                                   _buildStatCard(
@@ -305,11 +312,13 @@ class _HomeState extends State<Home> {
                                           ? getNepaliNumberFromText(
                                               data[0]['quarantined'])
                                           : data[0]['quarantined'],
-                                      Colors.purple),
+                                      Colors.purple,
+                                      null),
                                 ],
                               ),
                             ),
                             Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 _buildStatCard(
                                     changeLanguage
@@ -319,7 +328,8 @@ class _HomeState extends State<Home> {
                                         ? getNepaliNumberFromText(
                                             data[0]['todaycase'])
                                         : data[0]['todaycase'],
-                                    Colors.pink),
+                                    Colors.pink,
+                                    null),
                               ],
                             )
                           ],
@@ -422,7 +432,7 @@ class _HomeState extends State<Home> {
                               fontWeight: FontWeight.w600,
                               fontSize: 22,
                               decoration: TextDecoration.underline,
-                              color: Colors.blue,
+                              color: Color(0xff202c3b),
                             ),
                           ),
                         ),
@@ -457,7 +467,8 @@ class _HomeState extends State<Home> {
     );
   }
 
-  Expanded _buildStatCard(String title, String count, MaterialColor color) {
+  Expanded _buildStatCard(
+      String title, String count, MaterialColor color, TextAlign text) {
     return Expanded(
       child: Container(
         margin: const EdgeInsets.all(8.0),
@@ -478,6 +489,7 @@ class _HomeState extends State<Home> {
                   fontSize: 14.0,
                   fontWeight: FontWeight.w600,
                 ),
+                textAlign: text,
               ),
               Text(
                 count,

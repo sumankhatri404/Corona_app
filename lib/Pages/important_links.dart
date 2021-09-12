@@ -30,7 +30,7 @@ class _ImportantLinksState extends State<ImportantLinks> {
       headers: {"Content-Type": "application/json"},
     );
     var jsondata = json.decode(response.body);
-    print(jsondata);
+
     setState(() {
       data = jsondata;
       loading = false;
@@ -42,7 +42,6 @@ class _ImportantLinksState extends State<ImportantLinks> {
   void initState() {
     super.initState();
     importantLinks();
-    // getWorldLatestupdate();
   }
 
   @override
@@ -74,133 +73,245 @@ class _ImportantLinksState extends State<ImportantLinks> {
         ],
       ),
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: loading == true
-              ? Padding(
-                  padding: EdgeInsets.only(top: height * 0.1),
-                  child: Center(
-                      child: CircularProgressIndicator(
-                    strokeWidth: 6.0,
-                    // backgroundColor: Colors.red,
-                    color: Color(0xFF473F97),
-                  )),
-                )
-              : Column(
-                  children: [
-                    //facebook web view
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => FacebookWeb()),
-                        );
-                      },
-                      child: Container(
-                        height: height * 0.12,
-                        color: Colors.transparent,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            IconButton(
+        child: loading == true
+            ? Padding(
+                padding: EdgeInsets.only(top: height * 0.1),
+                child: Center(
+                    child: CircularProgressIndicator(
+                  strokeWidth: 6.0,
+                  // backgroundColor: Colors.red,
+                  color: Color(0xFF473F97),
+                )),
+              )
+            :
+            // ListView.builder(
+            //     itemCount: data.length,
+            //     itemBuilder: (context, index) {
+            //       return Column(
+            //         children: [
+            //           GestureDetector(
+            //             onTap: () {
+            //               Navigator.push(
+            //                 context,
+            //                 MaterialPageRoute(
+            //                     builder: (context) => CovidWebView()),
+            //               );
+            //             },
+            //             child: Container(
+            //               height: height * 0.12,
+            //               width: width,
+            //               child: Row(
+            //                 mainAxisAlignment: MainAxisAlignment.spaceAround,
+            //                 children: [
+            //                   IconsList(index),
+            //                   Padding(
+            //                     padding: const EdgeInsets.only(top: 30),
+            //                     child: Column(
+            //                       mainAxisAlignment: MainAxisAlignment.start,
+            //                       crossAxisAlignment:
+            //                           CrossAxisAlignment.center,
+            //                       children: [
+            //                         Text(
+            //                           data[index]['title'],
+            //                           style: TextStyle(
+            //                             fontWeight: FontWeight.bold,
+            //                           ),
+            //                           overflow: TextOverflow.ellipsis,
+            //                         ),
+            //                         Text(
+            //                           data[index]['link'],
+            //                           style: TextStyle(
+            //                               decoration:
+            //                                   TextDecoration.underline,
+            //                               color: Colors.blue),
+            //                         ),
+            //                       ],
+            //                     ),
+            //                   ),
+            //                 ],
+            //               ),
+            //             ),
+            //           ),
+            //           Divider(),
+            //         ],
+            //       );
+            //     })
+            Column(
+                children: [
+                  //facebook web view
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => FacebookWeb(
+                                 
+                                )),
+                      );
+                    },
+                    child: Container(
+                      height: height * 0.12,
+                      color: Colors.transparent,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          IconButton(
+                            onPressed: () {},
+                            icon: FaIcon(
+                              FontAwesomeIcons.facebook,
+                              size: 40,
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 30),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  data[4]['title'],
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Text(
+                                  data[4]['link'],
+                                  style: TextStyle(
+                                      decoration: TextDecoration.underline,
+                                      color: Colors.blue),
+                                )
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  Divider(),
+
+                  //Twitter web view
+
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => TwitterWebView()),
+                      );
+                    },
+                    child: Container(
+                      height: height * 0.12,
+                      color: Colors.transparent,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          IconButton(
+                            onPressed: () {},
+                            icon: FaIcon(
+                              FontAwesomeIcons.twitter,
+                              size: 40,
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 30),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  data[3]['title'],
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Text(
+                                  data[3]['link'],
+                                  style: TextStyle(
+                                      decoration: TextDecoration.underline,
+                                      color: Colors.blue),
+                                )
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  Divider(),
+
+                  //corona info ministry website covid19.mohp.gov.np
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => CovidWebView()),
+                      );
+                    },
+                    child: Container(
+                      height: height * 0.12,
+                      color: Colors.transparent,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: IconButton(
                               onPressed: () {},
                               icon: FaIcon(
-                                FontAwesomeIcons.facebook,
+                                FontAwesomeIcons.globe,
                                 size: 40,
                               ),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 30),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    data[4]['title'],
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 30),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 15),
+                                  child: Text(
+                                    data[5]['title'],
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                  Text(
-                                    data[4]['link'],
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 20),
+                                  child: Text(
+                                    data[5]['link'],
                                     style: TextStyle(
                                         decoration: TextDecoration.underline,
                                         color: Colors.blue),
-                                  )
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                    Divider(),
-
-                    //Twitter web view
-
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => TwitterWebView()),
-                        );
-                      },
-                      child: Container(
-                        height: height * 0.12,
-                        color: Colors.transparent,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            IconButton(
-                              onPressed: () {},
-                              icon: FaIcon(
-                                FontAwesomeIcons.twitter,
-                                size: 40,
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 30),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    data[3]['title'],
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                    ),
                                   ),
-                                  Text(
-                                    data[3]['link'],
-                                    style: TextStyle(
-                                        decoration: TextDecoration.underline,
-                                        color: Colors.blue),
-                                  )
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
+                                )
+                              ],
+                            ),
+                          )
+                        ],
                       ),
                     ),
-                    Divider(),
+                  ),
+                  Divider(),
 
-                    //corona info ministry website covid19.mohp.gov.np
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => CovidWebView()),
-                        );
-                      },
+                  //ministry of health and population mohp.gov.np/home/
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => MohpWiebview()),
+                      );
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 35),
                       child: Container(
                         height: height * 0.12,
                         color: Colors.transparent,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Padding(
-                              padding: const EdgeInsets.only(left: 10),
+                              padding: const EdgeInsets.only(left: 15),
                               child: IconButton(
                                 onPressed: () {},
                                 icon: FaIcon(
@@ -215,9 +326,9 @@ class _ImportantLinksState extends State<ImportantLinks> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsets.only(left: 15),
+                                    padding: const EdgeInsets.only(left: 20),
                                     child: Text(
-                                      data[5]['title'],
+                                      data[1]['title'],
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                       ),
@@ -226,7 +337,7 @@ class _ImportantLinksState extends State<ImportantLinks> {
                                   Padding(
                                     padding: const EdgeInsets.only(left: 20),
                                     child: Text(
-                                      data[5]['link'],
+                                      data[1]['link'],
                                       style: TextStyle(
                                           decoration: TextDecoration.underline,
                                           color: Colors.blue),
@@ -239,184 +350,133 @@ class _ImportantLinksState extends State<ImportantLinks> {
                         ),
                       ),
                     ),
-                    Divider(),
+                  ),
+                  Divider(),
 
-                    //ministry of health and population mohp.gov.np/home/
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => MohpWiebview()),
-                        );
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.only(right: 35),
-                        child: Container(
-                          height: height * 0.12,
-                          color: Colors.transparent,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 15),
-                                child: IconButton(
-                                  onPressed: () {},
-                                  icon: FaIcon(
-                                    FontAwesomeIcons.globe,
-                                    size: 40,
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 30),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 20),
-                                      child: Text(
-                                        data[1]['title'],
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 20),
-                                      child: Text(
-                                        data[1]['link'],
-                                        style: TextStyle(
-                                            decoration:
-                                                TextDecoration.underline,
-                                            color: Colors.blue),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    Divider(),
+                  //Department of health dohs.gov.np/
 
-                    //Department of health dohs.gov.np/
-
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => HealthServiceDepartment()),
-                        );
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.only(right: 75, left: 5),
-                        child: Container(
-                          height: height * 0.12,
-                          color: Colors.transparent,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(right: 30),
-                                child: IconButton(
-                                  onPressed: () {},
-                                  icon: FaIcon(
-                                    FontAwesomeIcons.globe,
-                                    size: 40,
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 30),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(right: 20),
-                                      child: Text(
-                                        data[2]['title'],
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ),
-                                    Text(
-                                      data[2]['link'],
-                                      style: TextStyle(
-                                          decoration: TextDecoration.underline,
-                                          color: Colors.blue),
-                                    )
-                                  ],
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    Divider(),
-
-                    //health emergency operation center heoc.mohp.gov.np
-
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => HealthEmergency()),
-                        );
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.only(right: 40, left: 5),
-                        child: Container(
-                          height: height * 0.12,
-                          color: Colors.transparent,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: [
-                              IconButton(
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => HealthServiceDepartment()),
+                      );
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 5),
+                      child: Container(
+                        height: height * 0.12,
+                        color: Colors.transparent,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(right: 30),
+                              child: IconButton(
                                 onPressed: () {},
                                 icon: FaIcon(
                                   FontAwesomeIcons.globe,
                                   size: 40,
                                 ),
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 30),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      data[0]['title'],
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 30),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(right: 20),
+                                    child: Text(
+                                      data[2]['title'],
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
-                                    Text(
-                                      data[0]['link'],
-                                      style: TextStyle(
-                                          decoration: TextDecoration.underline,
-                                          color: Colors.blue),
-                                    )
-                                  ],
-                                ),
-                              )
-                            ],
-                          ),
+                                  ),
+                                  Text(
+                                    data[2]['link'],
+                                    style: TextStyle(
+                                        decoration: TextDecoration.underline,
+                                        color: Colors.blue),
+                                  )
+                                ],
+                              ),
+                            )
+                          ],
                         ),
                       ),
                     ),
-                  ],
-                ),
-        ),
+                  ),
+                  Divider(),
+
+                  //health emergency operation center heoc.mohp.gov.np
+
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => HealthEmergency()),
+                      );
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 40, left: 5),
+                      child: Container(
+                        height: height * 0.12,
+                        color: Colors.transparent,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            IconButton(
+                              onPressed: () {},
+                              icon: FaIcon(
+                                FontAwesomeIcons.globe,
+                                size: 40,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 30),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    data[0]['title'],
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  Text(
+                                    data[0]['link'],
+                                    style: TextStyle(
+                                        decoration: TextDecoration.underline,
+                                        color: Colors.blue),
+                                  )
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
       ),
     );
   }
+}
+
+FaIcon IconsList(int index) {
+  FaIcon c;
+  if (index % 7 == 0) c = FaIcon(FontAwesomeIcons.globe);
+  if (index % 7 == 1) c = FaIcon(FontAwesomeIcons.globe);
+  if (index % 7 == 2) c = FaIcon(FontAwesomeIcons.globe);
+  if (index % 7 == 3) c = FaIcon(FontAwesomeIcons.globe);
+  if (index % 7 == 4) c = FaIcon(FontAwesomeIcons.globe);
+  if (index % 7 == 5) c = FaIcon(FontAwesomeIcons.globe);
+  return c;
 }

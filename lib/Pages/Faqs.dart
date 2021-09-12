@@ -17,15 +17,18 @@ class _FAQPageState extends State<FAQPage> {
   bool loading = true;
 
   Future questionAnswers() async {
-    var url = Uri.parse( 
+    var url = Uri.parse(
         "http://coronaapinepal.000webhostapp.com/question_answer_api.php");
-    var response = await http.get(url);
+    var response = await http.get(
+      url,
+      headers: {"Content-Type": "application/json"},
+    );
     var jsondata = json.decode(response.body);
-    print(jsondata);
+    // print(jsondata);
     setState(() {
       data = jsondata;
       loading = false;
-      print(data);
+      // print(data);
     });
   }
 
@@ -62,32 +65,35 @@ class _FAQPageState extends State<FAQPage> {
         // ],
       ),
       body: SafeArea(
-        child: loading == true
-            ? Padding(
-                padding: EdgeInsets.only(top: height * 0.01),
-                child: Center(
-                    child: CircularProgressIndicator(
-                  strokeWidth: 6.0,
-                  // backgroundColor: Colors.red,
-                  color: Color(0xFF473F97),
-                )),
-              )
-            : ListView.builder(
-                itemCount: data.length,
-                itemBuilder: (context, index) {
-                  return ExpansionTile(
-                    title: Text(
-                      data[index]['questions'],
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Text(data[index]['answers']),
-                      )
-                    ],
-                  );
-                }),
+        child: RefreshIndicator(
+          onRefresh: () async => questionAnswers(),
+          child: loading == true
+              ? Padding(
+                  padding: EdgeInsets.only(top: height * 0.01),
+                  child: Center(
+                      child: CircularProgressIndicator(
+                    strokeWidth: 6.0,
+                    // backgroundColor: Colors.red,
+                    color: Color(0xFF473F97),
+                  )),
+                )
+              : ListView.builder(
+                  itemCount: data.length,
+                  itemBuilder: (context, index) {
+                    return ExpansionTile(
+                      title: Text(
+                        data[index]['questions'],
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Text(data[index]['answers']),
+                        )
+                      ],
+                    );
+                  }),
+        ),
       ),
     );
   }

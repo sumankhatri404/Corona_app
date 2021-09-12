@@ -1,7 +1,9 @@
+import 'package:corona_app/webview/covid19_webview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
+import 'Pages/important_links.dart';
 import 'Provider/LanguageProvider.dart';
 import 'Provider/connectivity_provider.dart';
 import 'Provider/internet_conn.dart';
@@ -25,10 +27,11 @@ class MyApp extends StatelessWidget {
       builder: (context, AsyncSnapshot snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return MaterialApp(
-              debugShowCheckedModeBanner: false,
-              home: SafeArea(
-                child: Splash(),
-              ));
+            debugShowCheckedModeBanner: false,
+            home: SafeArea(
+              child: Splash(),
+            ),
+          );
         } else {
           return MultiProvider(
             providers: [
@@ -47,8 +50,8 @@ class MyApp extends StatelessWidget {
                 visualDensity: VisualDensity.adaptivePlatformDensity,
               ),
               home: InternetConnection(),
-              // home: ImageList(),
-              // home: ImportantLinks(),
+
+              // home: CovidWebView(),
             ),
           );
         }
@@ -73,9 +76,6 @@ class Init {
   static final instance = Init._();
 
   Future initialize() async {
-    // This is where you can initialize the resources needed by your app while
-    // the splash screen is displayed.  Remove the following example because
-    // delaying the user experience is a bad design practice!
     await Future.delayed(Duration(seconds: 6));
   }
 }

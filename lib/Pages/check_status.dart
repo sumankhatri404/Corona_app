@@ -24,7 +24,7 @@ class _CheckStatusState extends State<CheckStatus> {
           await http.post(Uri.parse(url), body: {'number': number.text});
       var checkNumber = json.decode(response.body);
 
-      print(checkNumber);
+      // print(checkNumber);
 
       if (checkNumber.isEmpty) {
         setState(() {

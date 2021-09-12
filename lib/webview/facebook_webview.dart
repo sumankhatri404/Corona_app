@@ -4,7 +4,7 @@ import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:provider/provider.dart';
 
 class FacebookWeb extends StatefulWidget {
-  const FacebookWeb({Key key}) : super(key: key);
+  FacebookWeb({Key key}) : super(key: key);
 
   @override
   _FacebookWebState createState() => _FacebookWebState();
@@ -13,10 +13,9 @@ class FacebookWeb extends StatefulWidget {
 class _FacebookWebState extends State<FacebookWeb> {
   @override
   Widget build(BuildContext context) {
-
     final lang = Provider.of<LanguageProvider>(context);
     bool changeLanguage = lang.isNepali;
-    
+
     var width = MediaQuery.of(context).size.width;
     return SafeArea(
       child: WebviewScaffold(

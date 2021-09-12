@@ -18,6 +18,7 @@ class _CovidWebViewState extends State<CovidWebView> {
 
     var width = MediaQuery.of(context).size.width;
 
+    var height = MediaQuery.of(context).size.height;
     return SafeArea(
       child: WebviewScaffold(
         url: "https://covid19.mohp.gov.np/",

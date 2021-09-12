@@ -18,7 +18,10 @@ class _SymptomsListState extends State<SymptomsList> {
   Future symptomsList() async {
     var url =
         Uri.parse("https://coronaapinepal.000webhostapp.com/symptoms_api.php");
-    var response = await http.get(url);
+    var response = await http.get(
+      url,
+      headers: {"Content-Type": "application/json"},
+    );
     var jsondata = json.decode(response.body);
     print(jsondata);
     setState(() {
@@ -48,60 +51,62 @@ class _SymptomsListState extends State<SymptomsList> {
         ),
       ),
       body: SafeArea(
-        child: loading == true
-            ? Padding(
-                padding: EdgeInsets.only(top: height * 0.01),
-                child: Center(
-                    child: CircularProgressIndicator(
-                  strokeWidth: 6.0,
-                  // backgroundColor: Colors.red,
-                  color: Color(0xFF473F97),
-                )),
-              )
-            : ListView.builder(
-                itemCount: data.length,
-                itemBuilder: (context, index) {
-                  return Card(
-                    elevation: 4,
-                    child: Column(
-                      children: [
-                        Container(
-                          child: Column(
-                            children: [
-                              // Text(data[index]['file']),
-                              Image.network(
-                                "https://coronaapinepal.000webhostapp.com/images/" +
-                                    data[index]['file'].trim(),
-                                height: 150,
-                              ),
-                            ],
+        child: RefreshIndicator(
+          onRefresh: () async => symptomsList(),
+          child: loading == true
+              ? Padding(
+                  padding: EdgeInsets.only(top: height * 0.01),
+                  child: Center(
+                      child: CircularProgressIndicator(
+                    strokeWidth: 6.0,
+                    // backgroundColor: Colors.red,
+                    color: Color(0xFF473F97),
+                  )),
+                )
+              : ListView.builder(
+                  itemCount: data.length,
+                  itemBuilder: (context, index) {
+                    return Card(
+                      elevation: 4,
+                      child: Column(
+                        children: [
+                          Container(
+                            child: Column(
+                              children: [
+                                Image.network(
+                                  "https://coronaapinepal.000webhostapp.com/images/" +
+                                      data[index]['file'].trim(),
+                                  height: 150,
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                          height: 7,
-                        ),
-                        Text(
-                          data[index]['title'],
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        SizedBox(
-                          height: 7,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            data[index]['description'],
-                            textAlign: TextAlign.justify,
+                          SizedBox(
+                            height: 7,
                           ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        )
-                      ],
-                    ),
-                  );
-                },
-              ),
+                          Text(
+                            data[index]['title'],
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          SizedBox(
+                            height: 7,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              data[index]['description'],
+                              textAlign: TextAlign.justify,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          )
+                        ],
+                      ),
+                    );
+                  },
+                ),
+        ),
       ),
     );
   }
